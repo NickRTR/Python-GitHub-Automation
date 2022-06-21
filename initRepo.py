@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from turtle import width
 import requests
 import os
 from dotenv import load_dotenv
@@ -37,10 +38,9 @@ os.system("git init")
 os.system("git remote add origin " + url)
 
 try:
-    md = open("README.md", "x")
-    # BUG: nothing is written to the file
-    md.write("# " + folderName)
-    md.close()
+    with open("README.md", "x") as md:
+        md.write("# " + folderName)
+        md.close()
 except:
     print("README.md already exists")
 

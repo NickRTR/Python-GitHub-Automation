@@ -34,3 +34,5 @@ https://docs.github.com/en/rest/repos/repos
 
 TODO: Add arguments for private/public
 TODO: Add argument for other repo name than directory name
+TODO: Documentation on how to add script to env variables on mac
+TODO: Documentation on how to add script to env variables on linux
