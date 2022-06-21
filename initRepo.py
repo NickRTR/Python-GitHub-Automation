@@ -1,21 +1,35 @@
 #!/usr/bin/env python3
 
-from turtle import width
 import requests
 import os
 from dotenv import load_dotenv
+import argparse
 
 load_dotenv()
 
 GH_TOKEN = os.getenv('GH_TOKEN')
 
-# get the current directory name to use it as repo name
-folderName = os.path.basename(os.getcwd())
+parser = argparse.ArgumentParser()
+parser.add_argument('-n', '--name', type=str, dest="name")
+parser.add_argument('-p', '--private', dest="isPrivate", action="store_true")
+args = parser.parse_args()
+
+if (args.name == None):
+    # get the current directory name to use it as repo name
+    name = os.path.basename(os.getcwd())
+else:
+    name = args.name
+
+isPrivate = args.isPrivate    
+
+if isPrivate:
+    payload = '{"name": "' + name + '", "private": "true"}'
+else:
+    payload = '{"name": "' + name + '", "private": "false"}'
 
 print("creating repository...")
 
 API_URL = "https://api.github.com"
-payload = '{"name": "' + folderName + '"}'
 headers = {
     "Authorization": "token " + GH_TOKEN,
     "Accept": "application/vnd.github.v3+json",
@@ -28,7 +42,7 @@ try:
 except requests.exceptions.RequestException as err:
     raise SystemExit(err)
 
-print("Successfully created repository: " + folderName)
+print("Successfully created repository: " + name)
 
 print("initializing repository...")
 
@@ -39,7 +53,7 @@ os.system("git remote add origin " + url)
 
 try:
     with open("README.md", "x") as md:
-        md.write("# " + folderName)
+        md.write("# " + name)
         md.close()
 except:
     print("README.md already exists")
