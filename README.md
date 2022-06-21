@@ -39,9 +39,4 @@ Python is required to be installed on your machine.
 If you want to create a private repo, use the `-p` / `--private` flag after `initRepo.py`
 If you want to specify a different name than your directory is called, use the `-n` / `--name` flag and your name after `initRepo.py`
 
-## Links
-
-https://docs.github.com/en/rest/repos/repos
-
-
 ## Todos
