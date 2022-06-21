@@ -22,7 +22,8 @@ Python is required to be installed on your machine.
 
 ## Usage:
 
-1. `py initRepo`
+1. Navigate into the folder, you want to create a Repo in
+1. `initRepo.py`
 
 ## Links
 
