@@ -38,6 +38,8 @@ os.system("git remote add origin " + url)
 
 try:
     md = open("README.md", "x")
+    # BUG: nothing is written to the file
+    md.write("# " + folderName)
     md.close()
 except:
     print("README.md already exists")
