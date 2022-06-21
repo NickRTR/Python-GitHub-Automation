@@ -4,11 +4,11 @@
 
 Python is required to be installed on your machine.
 
-1. clone repo to some location on your machine `git clone "https://github.com/NickRTR/GitHub-Automation.git"`
+1. clone repo to some location on your machine `git clone https://github.com/NickRTR/GitHub-Automation.git`
 2. `cd GitHub-Automation`
 3. pip install python-dotenv
 3. Create a GitHub access token with repo access
-4. Create and open `.env` and enter your token as following `GH_TOKEN=YOURTOKEN`
+4. Edit the `.env` file and enter your token after `GH_TOKEN=`
 5. Add `initRepo.py` to your environment variables (see further down)
 
 ## Add script to env variables
