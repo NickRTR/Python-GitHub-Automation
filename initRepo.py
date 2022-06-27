@@ -11,6 +11,7 @@ GH_TOKEN = os.getenv('GH_TOKEN')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-n', '--name', type=str, dest="name")
+parser.add_argument('-org', '--organization', type=str, dest="organization")
 parser.add_argument('-p', '--private', dest="isPrivate", action="store_true")
 args = parser.parse_args()
 
@@ -35,12 +36,20 @@ headers = {
     "Accept": "application/vnd.github.v3+json",
 }
 
-try:
-    res = requests.post(API_URL + "/user/repos", data=payload, headers=headers)
-    res.raise_for_status()
-
-except requests.exceptions.RequestException as err:
-    raise SystemExit(err)
+if (args.organization == None):
+    try:
+        res = requests.post(API_URL + "/user/repos", data=payload, headers=headers)
+        res.raise_for_status()
+        
+    except requests.exceptions.RequestException as err:
+        raise SystemExit(err)
+else:
+    try:
+        res = requests.post(API_URL + "/orgs/" + args.organization + "/repos", data=payload, headers=headers)
+        res.raise_for_status()
+        
+    except requests.exceptions.RequestException as err:
+        raise SystemExit(err)
 
 print("Successfully created repository: " + name)
 
